@@ -1,4 +1,4 @@
-package egd.covid.covidfront.entity;
+package egd.covid.covidfront.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
