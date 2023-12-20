@@ -38,6 +38,7 @@ public class IndexController {
 	public RedirectView createUser(BusquedaDto busquedaDto, RedirectAttributes redirectAttributes) {
 		List<PersonaDto> personas = searchService.search(busquedaDto);
 		redirectAttributes.addFlashAttribute("personas", personas);
+		redirectAttributes.addFlashAttribute("busquedaDto", busquedaDto);
 		return new RedirectView("/", true);
 	}
 }
