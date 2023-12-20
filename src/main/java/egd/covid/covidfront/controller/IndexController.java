@@ -1,7 +1,5 @@
-package egd.covid.covidfront;
+package egd.covid.covidfront.controller;
 
-import egd.covid.covidfront.entity.BusquedaDto;
-import egd.covid.covidfront.entity.Rating;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+
+import egd.covid.covidfront.entity.BusquedaDto;
 
 @Controller
 @RequestMapping({ "/", "/index" })
