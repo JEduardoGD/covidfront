@@ -37,7 +37,7 @@ public class SearchServiceImpl implements SearchService {
 			mapper.map(src -> src.getPrimerApellido(), PersonaDto::setPrimerApellido);
 			mapper.map(src -> src.getSegundoApellido(), PersonaDto::setSegundoApellido);
 		});
-		return personas.stream().map(p -> modelMapper.map(p, PersonaDto.class)).limit(100).collect(Collectors.toList());
+		return personas.stream().map(p -> modelMapper.map(p, PersonaDto.class)).collect(Collectors.toList());
 
 	}
 }
