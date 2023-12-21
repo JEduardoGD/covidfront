@@ -46,19 +46,80 @@
 					<div class="form-group">
 						<label for="busquedaNombre">Nombre</label>
 						<input id="busquedaNombre" class="form-control" type="text" th:field="*{nombre}" />
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio0" value="0"
+								th:field="*{nombreMode}">
+							<label class="form-check-label" for="inlineRadio1">Coincidencia exacta</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio1" value="1"
+								th:field="*{nombreMode}">
+							<label class="form-check-label" for="inlineRadio3">Contiene</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio2" value="2"
+								th:field="*{nombreMode}">
+							<label class="form-check-label" for="inlineRadio2">Comienza con</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio3" value="3"
+								th:field="*{nombreMode}">
+							<label class="form-check-label" for="inlineRadio3">Termina con</label>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="busquedaPrimerApellido">Primer apellido</label>
 						<input id="busquedaPrimerApellido" class="form-control" type="text"
 							th:field="*{primerApellido}" />
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio0" value="0"
+								th:field="*{primerApellidoMode}">
+							<label class="form-check-label" for="inlineRadio1">Coincidencia exacta</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio1" value="1"
+								th:field="*{primerApellidoMode}">
+							<label class="form-check-label" for="inlineRadio3">Contiene</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio2" value="2"
+								th:field="*{primerApellidoMode}">
+							<label class="form-check-label" for="inlineRadio2">Comienza con</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio3" value="3"
+								th:field="*{primerApellidoMode}">
+							<label class="form-check-label" for="inlineRadio3">Termina con</label>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="busquedaSegundoApellido">Segundo apellido</label>
 						<input id="busquedaSegundoApellido" class="form-control" type="text"
 							th:field="*{segundoApellido}" />
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio0" value="0"
+								th:field="*{segundoApellidoMode}">
+							<label class="form-check-label" for="inlineRadio1">Coincidencia exacta</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio1" value="1"
+								th:field="*{segundoApellidoMode}">
+							<label class="form-check-label" for="inlineRadio3">Contiene</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio2" value="2"
+								th:field="*{segundoApellidoMode}">
+							<label class="form-check-label" for="inlineRadio2">Comienza con</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="radio" name="nombreMode" id="inlineRadio3" value="3"
+								th:field="*{segundoApellidoMode}">
+							<label class="form-check-label" for="inlineRadio3">Termina con</label>
+						</div>
 					</div>
 					<div class="form-group">
-						<button th:disabled="${submitDisabled}" class="btn btn-primary" type="submit">Submit forms</button>
+						<button th:disabled="${submitDisabled}" class="btn btn-primary" type="submit">Submit
+							forms</button>
 					</div>
 				</form>
 			</div>
