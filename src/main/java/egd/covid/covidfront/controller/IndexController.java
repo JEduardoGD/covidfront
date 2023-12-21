@@ -38,7 +38,7 @@ public class IndexController {
 
 	@PostMapping("/find")
 	public RedirectView createUser(BusquedaDto busquedaDto, RedirectAttributes redirectAttributes) {
-		log.info("{}", busquedaDto.toString());
+		//log.info("{}", busquedaDto.toString());
 		List<PersonaDto> personas = searchService.search(busquedaDto);
 		redirectAttributes.addFlashAttribute("personas", personas);
 		redirectAttributes.addFlashAttribute("busquedaDto", busquedaDto);
