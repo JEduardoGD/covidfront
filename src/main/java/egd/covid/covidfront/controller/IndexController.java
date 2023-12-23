@@ -15,11 +15,9 @@ import egd.covid.covidfront.dto.BusquedaDto;
 import egd.covid.covidfront.dto.PersonaDto;
 import egd.covid.covidfront.service.SearchService;
 import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping({ "/", "/index" })
-@Slf4j
 public class IndexController {
 
 	BusquedaDto busquedaDto;
