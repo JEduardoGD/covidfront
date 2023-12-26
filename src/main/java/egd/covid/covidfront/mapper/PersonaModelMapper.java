@@ -5,13 +5,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 
 import egd.covid.covidfront.dto.PersonaDto;
 import egd.covid.persistence.entity.table.Persona;
 import egd.covid.persistence.util.StaticValuesHelper;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public abstract class PersonaModelMapper extends StaticValuesHelper {
 
 	@Getter
@@ -21,17 +25,8 @@ public abstract class PersonaModelMapper extends StaticValuesHelper {
 
 	static {
 		modelMapper = new ModelMapper();
-		modelMapper.typeMap(Persona.class, PersonaDto.class).addMappings(mapper -> {
-			mapper.map(src -> {
-				Character sexo = src.getSexo();
-				if (sexo == null) {
-					return StaticValuesHelper.EMPTY_STRING;
-				}
-				return sexo.equals(StaticValuesHelper.CHAR_M) ? StaticValuesHelper.MASCULINO
-						: (sexo.equals(StaticValuesHelper.CHAR_F) ? StaticValuesHelper.FEMENINO
-								: StaticValuesHelper.EMPTY_STRING);
-			}, PersonaDto::setSexoDto);
-			mapper.map(src -> src.getCurp(), PersonaDto::setCurp);
+		TypeMap<Persona, PersonaDto> typeMap = modelMapper.typeMap(Persona.class, PersonaDto.class);
+		typeMap.addMappings(mapper -> {
 			mapper.map(src -> {
 				Date fechaNacimiento = src.getFechaNacimiento();
 				if (fechaNacimiento == null) {
@@ -55,5 +50,16 @@ public abstract class PersonaModelMapper extends StaticValuesHelper {
 
 			}, PersonaDto::setNacionalidadDto);
 		});
+
+		Converter<Character, String> sexoConverter = ctx -> ctx.getSource() == null ? null
+				: (ctx.getSource().charValue() == CHAR_M ? StaticValuesHelper.MASCULINO
+						: (ctx.getSource().equals(CHAR_F) ? FEMENINO : EMPTY_STRING));
+
+		Converter<Character, String> nacionalidadConverter = ctx -> ctx.getSource() == null ? null
+				: (ctx.getSource().charValue() == CHAR_M ? StaticValuesHelper.MEXICANA
+						: (ctx.getSource().equals(CHAR_E) ? EXTRANJERO : EMPTY_STRING));
+
+		typeMap.addMappings(m -> m.using(sexoConverter).map(src -> src.getSexo(), PersonaDto::setSexoDto));
+		typeMap.addMappings(m -> m.using(nacionalidadConverter).map(src -> src.getNacionalidad(), PersonaDto::setNacionalidadDto));
 	}
 }
