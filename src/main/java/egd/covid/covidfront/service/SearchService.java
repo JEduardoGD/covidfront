@@ -9,4 +9,6 @@ public interface SearchService {
 
 	List<PersonaDto> search(BusquedaDto busquedaDto);
 
+	PersonaDto searchByIdPersona(long idPersona);
+
 }

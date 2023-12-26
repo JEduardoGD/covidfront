@@ -12,4 +12,9 @@ public class PersonaDto implements Serializable {
 	private String nombre;
 	private String primerApellido;
 	private String segundoApellido;
+	private String sexoDto;
+	private String curp;
+	private String fechaNacimiento;
+	private String edadDto;
+	private String nacionalidadDto;
 }
