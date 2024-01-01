@@ -7,12 +7,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class PersonaDto extends StaticValuesHelper implements Serializable {
 	private static final long serialVersionUID = -1641318817027772444L;
 
 	private int id;
-	private String gDomicilio;
 	private String nombre;
 	private String primerApellido;
 	private String segundoApellido;
@@ -22,6 +21,7 @@ public class PersonaDto extends StaticValuesHelper implements Serializable {
 	private String edadDto;
 	private String nacionalidadDto;
 	private String corina;
+	private DomicilioDto domicilioDto;
 
 	public String getNombreCompleto() {
 		StringBuffer sb = new StringBuffer();

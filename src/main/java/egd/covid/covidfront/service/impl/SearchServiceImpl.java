@@ -7,12 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import egd.covid.covidfront.dto.BusquedaDto;
+import egd.covid.covidfront.dto.DomicilioDto;
 import egd.covid.covidfront.dto.PersonaDto;
-import egd.covid.covidfront.mapper.CollectionModelMapper;
+import egd.covid.covidfront.mapper.DomicilioModelMapper;
+import egd.covid.covidfront.mapper.PersonaModelMapper;
 import egd.covid.covidfront.service.SearchService;
 import egd.covid.covidfront.util.ConsultaUtil;
 import egd.covid.persistence.component.PersonaEntityManager;
+import egd.covid.persistence.entity.table.Domicilio;
 import egd.covid.persistence.entity.table.Persona;
+import egd.covid.persistence.repository.DomicilioRepository;
 import egd.covid.persistence.repository.PersonaRepository;
 
 @Service
@@ -20,6 +24,9 @@ public class SearchServiceImpl implements SearchService {
 
 	@Autowired
 	PersonaRepository personaRepository;
+
+	@Autowired
+	DomicilioRepository domicilioRepository;
 
 	@Autowired
 	PersonaEntityManager personaEntityManager;
@@ -30,7 +37,7 @@ public class SearchServiceImpl implements SearchService {
 		List<Persona> personas = personaEntityManager.searchPersona(ConsultaUtil.getNombre(busquedaDto),
 				ConsultaUtil.getPrimerApellido(busquedaDto), ConsultaUtil.getSegundoApellido(busquedaDto));
 
-		return personas.stream().map(p -> CollectionModelMapper.getPersonaModelMapper().map(p, PersonaDto.class))
+		return personas.stream().map(p -> PersonaModelMapper.getModelMapper().map(p, PersonaDto.class))
 				.collect(Collectors.toList());
 	}
 
@@ -40,7 +47,14 @@ public class SearchServiceImpl implements SearchService {
 		if (persona == null) {
 			return null;
 		}
-		
-		return CollectionModelMapper.getPersonaModelMapper().map(persona, PersonaDto.class);
+
+		PersonaDto personaDto = PersonaModelMapper.getModelMapper().map(persona, PersonaDto.class);
+
+		if (persona.getDomicilio() != null) {
+			Domicilio domicilio = domicilioRepository.findById(persona.getDomicilio().getId()).orElse(null);
+			DomicilioDto domicilioDto = DomicilioModelMapper.getModelMapper().map(domicilio, DomicilioDto.class);
+			personaDto.setDomicilioDto(domicilioDto);
+		}
+		return personaDto;
 	}
 }

@@ -71,7 +71,7 @@
 							<button class="accordion-button" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
 								aria-controls="panelsStayOpen-collapseOne">
-								Datos personales
+								Ficha rápida
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
@@ -81,7 +81,16 @@
 									<tbody>
 										<tr>
 											<td>Nombre completo</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.nombreCompleto}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.nombreCompleto}></p>
+											</td>
+										</tr>
+										<tr>
+											<td>Domicilio:</td>
+											<td>
+												<p class="datatableparagraph"
+													th:text=${personaDto.domicilioDto.domicilioMostrar}></p>
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -93,7 +102,7 @@
 							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
 								data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
 								aria-controls="panelsStayOpen-collapseTwo">
-								Accordion Item #2
+								Datos personales
 							</button>
 						</h2>
 						<div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
@@ -103,39 +112,57 @@
 									<tbody>
 										<tr>
 											<td>ID</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.id}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.id}></p>
+											</td>
 										</tr>
 										<tr>
 											<td>Nombre</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.nombre}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.nombre}></p>
+											</td>
 										</tr>
 										<tr>
 											<td>Primer apellido</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.primerApellido}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.primerApellido}></p>
+											</td>
 										</tr>
 										<tr>
 											<td>Segundo apellido</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.segundoApellido}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.segundoApellido}></p>
+											</td>
 										</tr>
 										<tr>
 											<td>Sexo</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.sexoDto}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.sexoDto}></p>
+											</td>
 										</tr>
 										<tr>
 											<td>CURP</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.curp}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.curp}></p>
+											</td>
 										</tr>
 										<tr>
 											<td>Fecha de nacimiento</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.fechaNacimiento}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.fechaNacimiento}></p>
+											</td>
 										</tr>
 										<tr>
 											<td>Edad (registro)</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.edadDto}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.edadDto}></p>
+											</td>
 										</tr>
 										<tr>
 											<td>Nacionalidad</td>
-											<td><p class="datatableparagraph" th:text=${personaDto.nacionalidadDto}></p></td>
+											<td>
+												<p class="datatableparagraph" th:text=${personaDto.nacionalidadDto}></p>
+											</td>
 										</tr>
 									</tbody>
 								</table>
