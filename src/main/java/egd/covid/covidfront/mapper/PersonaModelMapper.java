@@ -19,7 +19,7 @@ public abstract class PersonaModelMapper extends StaticValuesHelper {
 	@Getter
 	static ModelMapper modelMapper;
 
-	private static final DateFormat DF = new SimpleDateFormat("d-MMMM-yyyy", new Locale("es", "MX"));
+	private static final DateFormat DF = new SimpleDateFormat(HR_DATE, new Locale("es", "MX"));
 
 	static {
 		modelMapper = new ModelMapper();

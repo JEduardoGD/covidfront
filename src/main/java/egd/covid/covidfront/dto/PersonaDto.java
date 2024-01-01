@@ -22,6 +22,7 @@ public class PersonaDto extends StaticValuesHelper implements Serializable {
 	private String nacionalidadDto;
 	private String corina;
 	private DomicilioDto domicilioDto;
+	private DefuncionDto defuncionDto;
 
 	public String getNombreCompleto() {
 		StringBuffer sb = new StringBuffer();
