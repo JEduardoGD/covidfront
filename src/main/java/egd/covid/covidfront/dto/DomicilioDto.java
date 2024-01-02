@@ -13,6 +13,9 @@ public class DomicilioDto extends StaticValuesHelper implements Serializable {
 	private String domicilio;
 	private String cp;
 	private String telefono;
+	private String localidad;
+	private String municipio;
+	private String entidad;
 
 	public String getDomicilioMostrar() {
 		StringBuffer sb = new StringBuffer();
@@ -22,6 +25,16 @@ public class DomicilioDto extends StaticValuesHelper implements Serializable {
 		if (this.cp != null) {
 			sb.append(this.cp).append(COMMA).append(WHITE_SPACE);
 		}
+		if (this.localidad != null) {
+			sb.append(this.localidad).append(COMMA).append(WHITE_SPACE);
+		}
+		if (this.municipio != null) {
+			sb.append(this.municipio).append(COMMA).append(WHITE_SPACE);
+		}
+		if (this.entidad != null) {
+			sb.append(this.entidad).append(COMMA).append(WHITE_SPACE);
+		}
+		
 		String sDomicilio = sb.toString();
 		if (sDomicilio.length() > 0) {
 			return sDomicilio.substring(0, sDomicilio.length() - 2);
