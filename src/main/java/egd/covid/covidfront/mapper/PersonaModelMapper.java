@@ -19,20 +19,13 @@ public abstract class PersonaModelMapper extends StaticValuesHelper {
 	@Getter
 	static ModelMapper modelMapper;
 
-	private static final DateFormat DF = new SimpleDateFormat(HR_DATE, new Locale("es", "MX"));
+	private static final DateFormat DF = new SimpleDateFormat(DDMMYYYY, new Locale("es", "MX"));
 
 	static {
 		modelMapper = new ModelMapper();
 		TypeMap<Persona, PersonaDto> personaTypeMap = modelMapper.typeMap(Persona.class, PersonaDto.class);
+		/*
 		personaTypeMap.addMappings(mapper -> {
-			mapper.map(src -> {
-				Date fechaNacimiento = src.getFechaNacimiento();
-				if (fechaNacimiento == null) {
-					return StaticValuesHelper.EMPTY_STRING;
-				}
-				return DF.format(src.getFechaNacimiento());
-			}, PersonaDto::setFechaNacimiento);
-
 			mapper.map(src -> {
 				Long edad = src.getEdad();
 				if (edad == null) {
@@ -41,6 +34,10 @@ public abstract class PersonaModelMapper extends StaticValuesHelper {
 				return edad.toString();
 			}, PersonaDto::setEdadDto);
 		});
+		*/
+		Converter<Date, String> edadConverter = ctx -> ctx.getSource() == null ? EMPTY_STRING
+				: (DF.format(ctx.getSource()));
+		personaTypeMap.addMappings(m -> m.using(edadConverter).map(src -> src.getFechaNacimiento(), PersonaDto::setFechaNacimiento));
 
 		Converter<Character, String> sexoConverter = ctx -> ctx.getSource() == null ? null
 				: (ctx.getSource().charValue() == CHAR_M ? StaticValuesHelper.MASCULINO
