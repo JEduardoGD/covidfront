@@ -9,15 +9,18 @@ import org.springframework.stereotype.Service;
 import egd.covid.covidfront.dto.BusquedaDto;
 import egd.covid.covidfront.dto.DefuncionDto;
 import egd.covid.covidfront.dto.DomicilioDto;
+import egd.covid.covidfront.dto.MedicoDto;
 import egd.covid.covidfront.dto.PersonaDto;
 import egd.covid.covidfront.mapper.DefuncionModelMapper;
 import egd.covid.covidfront.mapper.DomicilioModelMapper;
+import egd.covid.covidfront.mapper.MedicoModelMapper;
 import egd.covid.covidfront.mapper.PersonaModelMapper;
 import egd.covid.covidfront.service.SearchService;
 import egd.covid.covidfront.util.ConsultaUtil;
 import egd.covid.persistence.component.PersonaEntityManager;
 import egd.covid.persistence.entity.catalogo.Entidad;
 import egd.covid.persistence.entity.catalogo.Localidad;
+import egd.covid.persistence.entity.catalogo.Medico;
 import egd.covid.persistence.entity.catalogo.Municipio;
 import egd.covid.persistence.entity.table.Defuncion;
 import egd.covid.persistence.entity.table.Domicilio;
@@ -26,18 +29,20 @@ import egd.covid.persistence.repository.DefuncionRepository;
 import egd.covid.persistence.repository.DomicilioRepository;
 import egd.covid.persistence.repository.EntidadRepository;
 import egd.covid.persistence.repository.LocalidadRepository;
+import egd.covid.persistence.repository.MedicoRepository;
 import egd.covid.persistence.repository.MunicipioRepository;
 import egd.covid.persistence.repository.PersonaRepository;
 
 @Service
 public class SearchServiceImpl implements SearchService {
 
-	@Autowired PersonaRepository personaRepository;
+	@Autowired PersonaRepository   personaRepository;
 	@Autowired DomicilioRepository domicilioRepository;
 	@Autowired DefuncionRepository defuncionRepository;
 	@Autowired LocalidadRepository localidadRepository;
 	@Autowired MunicipioRepository municipioRepository;
-	@Autowired EntidadRepository entidadRepository;
+	@Autowired EntidadRepository   entidadRepository;
+	@Autowired MedicoRepository    medicoRepository;
 
 	@Autowired
 	PersonaEntityManager personaEntityManager;
@@ -69,13 +74,14 @@ public class SearchServiceImpl implements SearchService {
 				Localidad localidad = localidadRepository.findById(domicilio.getLocalidad().getId()).orElse(null);
 				domicilioDto.setLocalidad(localidad.getLocalidad());
 			}
-			
-			if(domicilio.getMunicipioResidencia()!=null) {
-				Municipio municipio = municipioRepository.findById(domicilio.getMunicipioResidencia().getId()).orElse(null);
+
+			if (domicilio.getMunicipioResidencia() != null) {
+				Municipio municipio = municipioRepository.findById(domicilio.getMunicipioResidencia().getId())
+						.orElse(null);
 				domicilioDto.setMunicipio(municipio.getMunicipio());
 			}
-			
-			if(domicilio.getEntidad()!=null) {
+
+			if (domicilio.getEntidad() != null) {
 				Entidad entidad = entidadRepository.findById(domicilio.getEntidad().getId()).orElse(null);
 				domicilioDto.setEntidad(entidad.getDescripcion());
 			}
@@ -90,5 +96,14 @@ public class SearchServiceImpl implements SearchService {
 		}
 
 		return personaDto;
+	}
+
+	@Override
+	public MedicoDto searchMedicoByIdPersona(long idPersona) {
+		Medico medico = medicoRepository.getMedicoByIdPersona(idPersona);
+		if (medico == null) {
+			return null;
+		}
+		return MedicoModelMapper.getModelMapper().map(medico, MedicoDto.class);
 	}
 }

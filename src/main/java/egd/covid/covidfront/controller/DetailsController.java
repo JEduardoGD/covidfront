@@ -16,8 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DetailsController {
 
-	@Autowired
-	SearchService searchService;
+	@Autowired SearchService searchService;
 
 	@GetMapping
 	public String mainx(Model model, @RequestParam(name = "idpersona", defaultValue = "0") long idpersona) {
